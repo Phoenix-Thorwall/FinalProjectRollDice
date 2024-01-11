@@ -11,33 +11,60 @@
 <body>
     <h1>ROLL ROLL DICE!!!</h1>
 
-    <h3>Before we start</h3>
-    
-    
-    <form id="NumDice"> <!--I reviewed how to construct a form using W3 Schools-->
-    <label>How many dice?</label>
-    <label for="one">1</label>
-    <input type="checkbox" id="one" name="one">
-    
-    <label for="two">2</label>
-    <input type="checkbox" id="two" name="two">
-    
-    <label for="three">3</label>
-    <input type="checkbox" id="three" name="three">
-    </form>
-    
-    <form id="NumRolls"> <!--I reviewed how to construct a form using W3 Schools-->
-    <label for="rollnum">How many rolls?</label>
-    <input type="text" id="rollnum" name="rollnum">
-    </form>
+    <div class="grid-container">
+        <div class="grid-item">
+            <table id="box">
 
-    <button>Roll Those Dice >:D</button>
+                <tr>
+                    <th><h3>Before we start</h3></th>
+                </tr>
+                
+                <tr>
+                    <form id="NumDice"> <!--I reviewed how to construct a form using W3 Schools-->
+                        <td>
+                            <label>How many dice?</label>
+                            <label for="one">1</label>
+                            <input type="radio" name="num" value=1>
+                            
+                            <label for="two">2</label>
+                            <input type="radio" name="num" value=2>
+                            
+                            <label for="three">3</label>
+                            <input type="radio" name="num" value=3>
+                        </td>
+                    </form>
+                </tr>
+                
+                <tr>
+                    <form id="NumRolls"> <!--I reviewed how to construct a form using W3 Schools-->
+                        <td>
+                            <label for="rollnum">How many rolls?</label>
+                            <input type="text" id="rollnum" name="rollnum">
+                        </td>
+                    </form>
+                </tr>
+            </table>
 
-    <table id="Frequency">
-        <tr>
-            <th>Frequency</th>
-        </tr>
-    </table>
+            <button onclick = "rollDice();">Roll Those Dice >:D</button>
+        </div>
+
+
+        <div class="grid-item">
+            <table id="Frequency">
+                <tr>
+                    <th>Roll Frequency</th>
+                </tr>
+            </table>
+        </div>
+
+        <div class="grid-item">
+            <table id="Stats">
+                <tr>
+                    <th>Total Stats</th>
+                </tr>
+            </table>
+        </div>
+    </div>
     
     
     

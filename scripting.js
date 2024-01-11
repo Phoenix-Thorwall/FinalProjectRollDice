@@ -5,3 +5,18 @@ function addRow(tableID){
     let newRow = table.Ref.insertRow(-1);
     
 }
+
+function rollDice(){
+    //First Step: Storing the vals from Radio & Text responses
+    //I got inspo for this from geeksforgeeks.org
+    var nums = document.getElementsByName('num');
+    numDie = 0;
+
+    for (i = 0; i < nums.length; i++){
+        if (nums[i].checked){
+            numDie = nums[i].value; 
+        }
+    }
+    console.log(numDie);
+
+}
