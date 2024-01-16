@@ -1,21 +1,5 @@
-//The following function is a modified version of the one I made
-//for my "Hot&Cold Game" project
-function addRow(tableID, reps){
-    let tableRef = document.getElementById(tableID);
-    // for (i = 1; i < reps + 1; i++){
-        
-    // }
-
-    if (tableRef == document.getElementById("Frequency")){
-        for (i = reps/6; i < reps + 1; i++){
-            let newRow = tableRef.insertRow(-1);
-            let diceVal = newRow.insertCell(0);
-            diceVal.innerHTML = i;
-        }
-    }
-    
-    
-}
+var allRolls = [];
+var die = 0;
 
 function rollDice(){
     //First Step: Storing the vals from Radio & Text responses
@@ -38,8 +22,8 @@ function rollDice(){
 
 
     //Actually rolling the dice LMAO
-    var die = 0;
-    const allRolls = [];
+    // var die = 0;
+    // let allRolls = [];
 
     for (i = 0; i < rolls; i++){
         for(j = 0; j < numDie; j++){
@@ -48,8 +32,10 @@ function rollDice(){
         }
     }
 
+
     console.log(allRolls);
-    console.log(checkDouble(allRolls));
+    // console.log(checkDouble(allRolls));
+    console.log(howMany_in_(6, allRolls));
 
 
 
@@ -58,15 +44,31 @@ function rollDice(){
 
 }
 
+function howMany_in_(num, arr){
+    var frequency = 0;
+    for(i = 0; i < arr.length; i++){
+        if (arr[i] == num){
+            frequency++;
+        }
+    }
+    return frequency;
+}
+
 function checkDouble(arr){
-    // var doubles = 0;
-    // for (i = 0; i < arr.length - 1; i++){
-    //     for (j = i + 1; i < arr.length; j++)
-    //     if (arr[i] == arr[j]){
-    //         doubles++;
-    //     }
-    // }
-    // return doubles;
+    doubles = 0;
+    const checkArr = arr;
+    for (i = 0; i < checkArr.length - 1; i++){
+        for (j = 0; j < checkArr.length; j++){
+            if (checkArr[i] == checkArr[j]){
+                doubles++;
+                checkArr.splice(checkArr.indexOf(i), checkArr.indexOf(i));
+                checkArr.splice(checkArr.indexOf(j), checkArr.indexOf(j));
+                i = 0;
+                j = 0;
+            }
+        }
+    }
+    return doubles;
 }
 
 function checkTriple(arr){
@@ -83,4 +85,25 @@ function calcMedian(arr){
 
 function calcMode(arr){
 
+}
+
+//The following function is a modified version of the one I made
+//for my "Hot&Cold Game" project
+function addRow(tableID, reps){
+    let tableRef = document.getElementById(tableID);
+    // for (i = 1; i < reps + 1; i++){
+        
+    // }
+
+    if (tableRef == document.getElementById("Frequency")){
+        for (i = reps/6; i < reps + 1; i++){
+            let newRow = tableRef.insertRow(-1);
+            let diceVal = newRow.insertCell(0);
+            diceVal.innerHTML = i;
+            let valFreq = newRow.insertCell(1);
+            // valFreq.innerHTML = howMany_in_(i, allRolls);
+        }
+    }
+    
+    
 }
