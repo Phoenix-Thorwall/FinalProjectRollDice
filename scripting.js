@@ -49,10 +49,38 @@ function rollDice(){
     }
 
     console.log(allRolls);
+    console.log(checkDouble(allRolls));
 
 
 
 
 
+
+}
+
+function checkDouble(arr){
+    // var doubles = 0;
+    // for (i = 0; i < arr.length - 1; i++){
+    //     for (j = i + 1; i < arr.length; j++)
+    //     if (arr[i] == arr[j]){
+    //         doubles++;
+    //     }
+    // }
+    // return doubles;
+}
+
+function checkTriple(arr){
+
+}
+
+function calcMean(arr){
+
+}
+
+function calcMedian(arr){
+
+}
+
+function calcMode(arr){
 
 }
