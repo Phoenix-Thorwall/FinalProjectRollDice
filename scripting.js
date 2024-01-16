@@ -1,8 +1,19 @@
 //The following function is a modified version of the one I made
 //for my "Hot&Cold Game" project
-function addRow(tableID){
+function addRow(tableID, reps){
     let tableRef = document.getElementById(tableID);
-    let newRow = table.Ref.insertRow(-1);
+    // for (i = 1; i < reps + 1; i++){
+        
+    // }
+
+    if (tableRef == document.getElementById("Frequency")){
+        for (i = reps/6; i < reps + 1; i++){
+            let newRow = tableRef.insertRow(-1);
+            let diceVal = newRow.insertCell(0);
+            diceVal.innerHTML = i;
+        }
+    }
+    
     
 }
 
@@ -14,9 +25,34 @@ function rollDice(){
 
     for (i = 0; i < nums.length; i++){
         if (nums[i].checked){
-            numDie = nums[i].value; 
+            numDie = parseInt(nums[i].value); 
         }
     }
     console.log(numDie);
+
+    var rolls = parseInt(document.getElementById('rollnum').value);
+    console.log(rolls);
+
+    
+    addRow("Frequency", numDie*6);
+
+
+    //Actually rolling the dice LMAO
+    var die = 0;
+    const allRolls = [];
+
+    for (i = 0; i < rolls; i++){
+        for(j = 0; j < numDie; j++){
+            die = Math.floor(Math.random() * 6) + 1;
+            allRolls.push(die);
+        }
+    }
+
+    console.log(allRolls);
+
+
+
+
+
 
 }
