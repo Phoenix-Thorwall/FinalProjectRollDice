@@ -7,7 +7,7 @@ function rollDice(){
     var nums = document.getElementsByName('num');
     numDie = 0;
 
-    for (i = 0; i < nums.length; i++){
+    for (let i = 0; i < nums.length; i++){
         if (nums[i].checked){
             numDie = parseInt(nums[i].value); 
         }
@@ -18,20 +18,22 @@ function rollDice(){
     console.log(rolls);
 
     
-    addRow("Frequency", numDie*6);
+  
 
 
     //Actually rolling the dice LMAO
     // var die = 0;
     // let allRolls = [];
 
-    for (i = 0; i < rolls; i++){
-        for(j = 0; j < numDie; j++){
-            die = Math.floor(Math.random() * 6) + 1;
-            allRolls.push(die);
+    for (let i = 0; i < rolls; i++){
+        die = 0;
+        for(let j = 0; j < numDie; j++){
+            die += Math.floor(Math.random() * 6) + 1;
         }
+        allRolls.push(die);
     }
 
+    addRow("Frequency", numDie*6);
 
     console.log(allRolls);
     // console.log(checkDouble(allRolls));
@@ -39,14 +41,12 @@ function rollDice(){
 
 
 
-
-
-
 }
+
 
 function howMany_in_(num, arr){
     var frequency = 0;
-    for(i = 0; i < arr.length; i++){
+    for(let i = 0; i < arr.length; i++){
         if (arr[i] == num){
             frequency++;
         }
@@ -57,8 +57,8 @@ function howMany_in_(num, arr){
 function checkDouble(arr){
     doubles = 0;
     const checkArr = arr;
-    for (i = 0; i < checkArr.length - 1; i++){
-        for (j = 0; j < checkArr.length; j++){
+    for (let i = 0; i < checkArr.length - 1; i++){
+        for (let j = 0; j < checkArr.length; j++){
             if (checkArr[i] == checkArr[j]){
                 doubles++;
                 checkArr.splice(checkArr.indexOf(i), checkArr.indexOf(i));
@@ -96,14 +96,14 @@ function addRow(tableID, reps){
     // }
 
     if (tableRef == document.getElementById("Frequency")){
-        for (i = reps/6; i < reps + 1; i++){
+        for (let i = reps/6; i < reps + 1; i++){
             let newRow = tableRef.insertRow(-1);
             let diceVal = newRow.insertCell(0);
             diceVal.innerHTML = i;
             let valFreq = newRow.insertCell(1);
-            // valFreq.innerHTML = howMany_in_(i, allRolls);
+            console.log(allRolls.length);
+            valFreq.innerHTML = howMany_in_(i, allRolls);
         }
     }
-    
     
 }
