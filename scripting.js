@@ -46,17 +46,19 @@ function rollDice(){
             die2 = Math.floor(Math.random() * 6) + 1;
             console.log(die1, die2, die3);
             doubleOrtriple(die1, die2, die3);
+            console.log("Doubles: " + doubles + " Triples: " + triples);
         } else if (numDie == 3){
             die1 = Math.floor(Math.random() * 6) + 1;
             die2 = Math.floor(Math.random() * 6) + 1;
             die3 = Math.floor(Math.random() * 6) + 1;
             console.log(die1, die2, die3);
             doubleOrtriple(die1, die2, die3);
+            console.log("Doubles: " + doubles + " Triples: " + triples);
         }
         // allRolls.push(die);
         allRolls.push(die1 + die2 + die3);
     }
-    console.log("Doubles: " + doubles + " Triples: " + triples);
+    
 
     let statRows = 3;
     if (numDie > 1){
@@ -87,7 +89,7 @@ function howMany_in_(num, arr){
 
 
 function doubleOrtriple(num1, num2, num3){
-    if (num1 == num2 == num3){
+    if (num1 == num2 && num1 == num3){
         triples++;
     } else if (num1 == num2 || num1 == num3 || num2 == num3){
         doubles ++;
@@ -126,6 +128,11 @@ function addRow(tableID, reps){
         for (let i = 0; i < reps; i++){
             let newRow = tableRef.insertRow(-1);
             let statName = newRow.insertCell(0);
+            if (reps == 3){
+                if (i == 0){
+                    statName.innerHTML = "Mean";
+                }
+            }
             statName.innerHTML = 0;
             let stat = newRow.insertCell(1);
             stat.innerHTML = 0;
