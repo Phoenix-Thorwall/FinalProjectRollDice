@@ -1,5 +1,10 @@
 var allRolls = [];
-var die = 0;
+// var die = 0;
+var die1 = 0;
+var die2 = 0;
+var die3 = 0;
+var doubles = 0;
+var triples = 0;
 
 function rollDice(){
     //First Step: Storing the vals from Radio & Text responses
@@ -26,14 +31,40 @@ function rollDice(){
     // let allRolls = [];
 
     for (let i = 0; i < rolls; i++){
-        die = 0;
-        for(let j = 0; j < numDie; j++){
-            die += Math.floor(Math.random() * 6) + 1;
+        // die = 0;
+        // for(let j = 0; j < numDie; j++){
+        //     die += Math.floor(Math.random() * 6) + 1;
+        // }
+        die1 = 0;
+        die2 = 0;
+        die3 = 0;
+        if (numDie == 1){
+            die1 = Math.floor(Math.random() * 6) + 1;
+            console.log(die1, die2, die3);
+        } else if (numDie == 2){
+            die1 = Math.floor(Math.random() * 6) + 1;
+            die2 = Math.floor(Math.random() * 6) + 1;
+            console.log(die1, die2, die3);
+            doubleOrtriple(die1, die2, die3);
+        } else if (numDie == 3){
+            die1 = Math.floor(Math.random() * 6) + 1;
+            die2 = Math.floor(Math.random() * 6) + 1;
+            die3 = Math.floor(Math.random() * 6) + 1;
+            console.log(die1, die2, die3);
+            doubleOrtriple(die1, die2, die3);
         }
-        allRolls.push(die);
+        // allRolls.push(die);
+        allRolls.push(die1 + die2 + die3);
     }
+    console.log("Doubles: " + doubles + " Triples: " + triples);
 
+    let statRows = 3;
+    if (numDie > 1){
+        statRows += numDie - 1;
+    }
     addRow("Frequency", numDie*6);
+    console.log("statRows: " + statRows);
+    addRow("Stats", statRows);
 
     console.log(allRolls);
     // console.log(checkDouble(allRolls));
@@ -54,25 +85,13 @@ function howMany_in_(num, arr){
     return frequency;
 }
 
-function checkDouble(arr){
-    doubles = 0;
-    const checkArr = arr;
-    for (let i = 0; i < checkArr.length - 1; i++){
-        for (let j = 0; j < checkArr.length; j++){
-            if (checkArr[i] == checkArr[j]){
-                doubles++;
-                checkArr.splice(checkArr.indexOf(i), checkArr.indexOf(i));
-                checkArr.splice(checkArr.indexOf(j), checkArr.indexOf(j));
-                i = 0;
-                j = 0;
-            }
-        }
+
+function doubleOrtriple(num1, num2, num3){
+    if (num1 == num2 == num3){
+        triples++;
+    } else if (num1 == num2 || num1 == num3 || num2 == num3){
+        doubles ++;
     }
-    return doubles;
-}
-
-function checkTriple(arr){
-
 }
 
 function calcMean(arr){
@@ -91,10 +110,7 @@ function calcMode(arr){
 //for my "Hot&Cold Game" project
 function addRow(tableID, reps){
     let tableRef = document.getElementById(tableID);
-    // for (i = 1; i < reps + 1; i++){
-        
-    // }
-
+ 
     if (tableRef == document.getElementById("Frequency")){
         for (let i = reps/6; i < reps + 1; i++){
             let newRow = tableRef.insertRow(-1);
@@ -103,6 +119,16 @@ function addRow(tableID, reps){
             let valFreq = newRow.insertCell(1);
             console.log(allRolls.length);
             valFreq.innerHTML = howMany_in_(i, allRolls);
+        }
+    }
+
+    if (tableRef == document.getElementById("Stats")){
+        for (let i = 0; i < reps; i++){
+            let newRow = tableRef.insertRow(-1);
+            let statName = newRow.insertCell(0);
+            statName.innerHTML = 0;
+            let stat = newRow.insertCell(1);
+            stat.innerHTML = 0;
         }
     }
     
