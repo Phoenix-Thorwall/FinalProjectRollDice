@@ -97,7 +97,11 @@ function doubleOrtriple(num1, num2, num3){
 }
 
 function calcMean(arr){
-
+    let sum = 0;
+    for (let i = 0; i < arr.length; i++){
+        sum += arr[i];
+    }
+    return (sum / arr.length).toFixed(2);
 }
 
 function calcMedian(arr){
@@ -128,14 +132,49 @@ function addRow(tableID, reps){
         for (let i = 0; i < reps; i++){
             let newRow = tableRef.insertRow(-1);
             let statName = newRow.insertCell(0);
+            let stat = newRow.insertCell(1);
+            // stat.innerHTML = 0;
+            //If only 1 dice is rolled, the stats are Mean, Median and Mode
             if (reps == 3){
                 if (i == 0){
                     statName.innerHTML = "Mean";
+                    stat.innerHTML = calcMean(allRolls);
+                } else if (i == 1){
+                    statName.innerHTML = "Median";
+                } else if (i == 2){
+                    statName.innerHTML = "Mode";
                 }
             }
-            statName.innerHTML = 0;
-            let stat = newRow.insertCell(1);
-            stat.innerHTML = 0;
+            //If 2 dice are rolled, the additional stat "Doubles" appears
+            if (reps == 4){
+                if (i == 0){
+                    statName.innerHTML = "Doubles";
+                    stat.innerHTML = doubles;
+                } else if (i == 1){
+                    statName.innerHTML = "Mean";
+                } else if (i == 2){
+                    statName.innerHTML = "Median";
+                } else if (i == 3){
+                    statName.innerHTML = "Mode";
+                }
+            }
+            //If 3 dice are rolled, the additional stat "Triples" appears
+            if (reps == 5){
+                if (i == 0){
+                    statName.innerHTML = "Doubles";
+                    stat.innerHTML = doubles;
+                } else if (i == 1){
+                    statName.innerHTML = "Triples";
+                    stat.innerHTMl = triples;
+                } else if (i == 2){
+                    statName.innerHTML = "Mean";
+                } else if (i == 3){
+                    statName.innerHTML = "Median";
+                } else if (i == 4){
+                    statName.innerHTML = "Mode";
+                }
+            }
+    
         }
     }
     
