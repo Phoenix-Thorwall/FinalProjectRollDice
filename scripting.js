@@ -152,6 +152,7 @@ function addRow(tableID, reps){
                     stat.innerHTML = doubles;
                 } else if (i == 1){
                     statName.innerHTML = "Mean";
+                    stat.innerHTML = calcMean(allRolls);
                 } else if (i == 2){
                     statName.innerHTML = "Median";
                 } else if (i == 3){
@@ -165,9 +166,10 @@ function addRow(tableID, reps){
                     stat.innerHTML = doubles;
                 } else if (i == 1){
                     statName.innerHTML = "Triples";
-                    stat.innerHTMl = triples;
+                    stat.innerHTML = triples;
                 } else if (i == 2){
                     statName.innerHTML = "Mean";
+                    stat.innerHTML = calcMean(allRolls);
                 } else if (i == 3){
                     statName.innerHTML = "Median";
                 } else if (i == 4){
