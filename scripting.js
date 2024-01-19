@@ -111,14 +111,27 @@ function calcMedian(arr){
     const sorted = arr.sort((a, b) => a - b);
 
     if (arr.length % 2 == 0){
-        return (sorted[middle - 1] + sorted[middle]) / 2;
+        return Math.round((sorted[middle - 1] + sorted[middle]) / 2);
     } else {
         return sorted[middle];
     }
 }
 
 function calcMode(arr){
-
+    const sorted = arr.sort((a, b) => a - b);
+    const freqs = [];
+    for (let i = 0; i < arr.length; i++){
+        freqs.push(howMany_in_(arr[i], arr));
+    }
+    var max = 0;
+    for (let i = 0; i < freqs.length; i++){
+        if (freqs[i] > max){
+            max = freqs[i];
+        }
+    }
+    console.log(sorted);
+    console.log(freqs);
+    return sorted[freqs.indexOf(max)];
 }
 
 //The following function is a modified version of the one I made
@@ -153,6 +166,7 @@ function addRow(tableID, reps){
                     stat.innerHTML = calcMedian(allRolls);
                 } else if (i == 2){
                     statName.innerHTML = "Mode";
+                    stat.innerHTML = calcMode(allRolls);
                 }
             }
             //If 2 dice are rolled, the additional stat "Doubles" appears
@@ -168,6 +182,7 @@ function addRow(tableID, reps){
                     stat.innerHTML = calcMedian(allRolls);
                 } else if (i == 3){
                     statName.innerHTML = "Mode";
+                    stat.innerHTML = calcMode(allRolls);
                 }
             }
             //If 3 dice are rolled, the additional stat "Triples" appears
@@ -186,6 +201,7 @@ function addRow(tableID, reps){
                     stat.innerHTML = calcMedian(allRolls);
                 } else if (i == 4){
                     statName.innerHTML = "Mode";
+                    stat.innerHTML = calcMode(allRolls);
                 }
             }
     
