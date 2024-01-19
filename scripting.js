@@ -104,8 +104,17 @@ function calcMean(arr){
     return (sum / arr.length).toFixed(2);
 }
 
+//I learned how to make this function from tutorials point
+//AND by learning about the sort function on W3 Schools
 function calcMedian(arr){
+    const middle = Math.floor(arr.length / 2);
+    const sorted = arr.sort((a, b) => a - b);
 
+    if (arr.length % 2 == 0){
+        return (sorted[middle - 1] + sorted[middle]) / 2;
+    } else {
+        return sorted[middle];
+    }
 }
 
 function calcMode(arr){
@@ -141,6 +150,7 @@ function addRow(tableID, reps){
                     stat.innerHTML = calcMean(allRolls);
                 } else if (i == 1){
                     statName.innerHTML = "Median";
+                    stat.innerHTML = calcMedian(allRolls);
                 } else if (i == 2){
                     statName.innerHTML = "Mode";
                 }
@@ -155,6 +165,7 @@ function addRow(tableID, reps){
                     stat.innerHTML = calcMean(allRolls);
                 } else if (i == 2){
                     statName.innerHTML = "Median";
+                    stat.innerHTML = calcMedian(allRolls);
                 } else if (i == 3){
                     statName.innerHTML = "Mode";
                 }
@@ -172,6 +183,7 @@ function addRow(tableID, reps){
                     stat.innerHTML = calcMean(allRolls);
                 } else if (i == 3){
                     statName.innerHTML = "Median";
+                    stat.innerHTML = calcMedian(allRolls);
                 } else if (i == 4){
                     statName.innerHTML = "Mode";
                 }
